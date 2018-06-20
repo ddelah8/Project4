@@ -1,0 +1,114 @@
+/**
+* The purpose of this lab is to find the mean between a set of numbers, display them in an array and other functions. <br>
+* CSC 1350 Lab # 6
+* @author Derek Delahoussaye
+* @since October 23, 2017
+*/
+package averagefinder;
+
+/**
+ *
+ * @author derek
+ */
+import java.util.Scanner;
+public class AverageFinder {
+    public static int countIf(int[]data, double low, double high){
+        int count =0;
+        for (int i = 0; i < data.length;i++)
+        {
+            if ((data[i]>= 0) && (data[i]<= 100))
+            {
+                count += 1;
+            }
+        }return count;
+    }
+    
+    public static int sumIf(int[] data, double low, double high){
+        int sum = 0;
+        for (int i =0; i < data.length; i++)
+        {
+            if ((data[i]>= 0) && (data[i]<= 100))
+                    {
+                        sum += data[i];
+                    }
+        }return sum;
+    }
+    public static String toString(int[] data)
+{
+String str_data = "(";
+for (int i =0; i <data.length; i++)
+{
+    if (i == data.length-1)
+      {
+            str_data = str_data + data[i] + ")";
+   }else{
+        str_data = str_data + data[i] + ",";
+}
+}
+return str_data;
+}
+    
+    public static int findMin(int[] data)
+{
+    int min = data[0];
+    for (int i = 1; i < data.length; i++)
+    {     
+        if ( data[i] < min)
+        { 
+            min = data[i];
+        }
+        
+        }
+    return min;
+    }
+    
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Scanner testScores = new Scanner (System.in);
+        int data_len;
+        int i = 0;
+   
+   double sumIf = 0;
+   int countIf = 0;
+   System.out.println("Enter number of students (no less than 5) ->");
+   i = sc.nextInt();
+   int [] data = new int[i];
+   System.out.printf("Successively enter %d test scores between 0 and 100." , i);
+        int score;
+        
+        
+    do
+        
+    {
+        
+        System.out.printf("Enter a score ( %d remaining) -> \n", i-countIf);
+        System.out.printf("testScores[%d] \n", countIf);
+        score = testScores.nextInt();
+        data [countIf] = score;
+        sumIf = sumIf + score;
+        countIf++;
+        
+        
+    }while (countIf < i);
+    
+    System.out.printf("List of Scores : {%s} \n",toString(data));
+    double avg = (double) sumIf(data,0,100)/countIf(data,0,100);
+     System.out.printf("Average Test Scores: %d/%d = %.1f \n", sumIf(data,0,100), data.length,avg);
+     double avg1 = (double)sumIf(data,avg,100)/countIf(data,avg,100);
+     System.out.printf("Average of Test Scores:( >= %f): %d/%d = %f \n",avg,sumIf(data,avg,100),countIf(data,avg,100),avg1);
+     double avg2 = (double)sumIf(data,70,100)/countIf(data,70,100);
+     System.out.printf("Average of Passing Test Scores : %d \n" ,avg2,sumIf(data,avg2,100),countIf(data,avg,100),avg2);
+     System.out.printf("Minimum Test Score: %d \n", findMin(data));
+     System.out.printf("Number of 'A' Test Scores: \n");
+    }
+}
+
+
+
+     
+    
+
+
+
+
